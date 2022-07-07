@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1053658889428",
+    "project_id": "project2-f3df8",
+    "storage_bucket": "project2-f3df8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053658889428:android:7d43d9bf5b37f019878f41",
+        "android_client_info": {
+          "package_name": "com.natnicha.mobile_dev_project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053658889428-7oo627v5pq7lrrt36du77et4g32ccpet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9dv_xGvZEpHcOLMbq497d26BWIH41GhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053658889428-7oo627v5pq7lrrt36du77et4g32ccpet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

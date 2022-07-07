@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.project2",
+  "applicationId": "com.natnicha.mobile_dev_project2",
   "variantName": "processDebugResources",
   "elements": [
     {
