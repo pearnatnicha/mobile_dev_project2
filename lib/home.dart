@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     _firestore = FirebaseFirestore.instance;
   }
 
-  void getMessages() async {
+  void getPlaces() async {
     final places = await _firestore
         .collection('places')
         .get();
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
             icon: const Icon(Icons.close),
             onPressed: () {
               // logout
-              getMessages();
+              getPlaces();
             },
           )
         ],
