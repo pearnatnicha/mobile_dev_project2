@@ -1,61 +1,52 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_demo/register.dart';
 import 'package:flutter/material.dart';
+import 'addData.dart';
+import 'register.dart';
+import 'login.dart';
+import 'home2.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({required this.email, required this.password});
+
+  final String email;
+  final String password;
+
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  late FirebaseFirestore _firestore;
+  late String loggedInUser;
+
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  late List<Widget> _widgetOptions = [
+    Home2(email: widget.email, password: widget.password),
+    AddData(email: widget.email, password: widget.password),
+    // Login(),
+  ];
+
+
 
   @override
   void initState() {
     super.initState();
-    initFirebase();
   }
 
-  void initFirebase() async {
-    await Firebase.initializeApp();
-    _firestore = FirebaseFirestore.instance;
+
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
-  void getPlaces() async {
-    final places = await _firestore
-        .collection('places')
-        .get();
-    //Here is the list of messages
-    for (var place in places.docs) {
-      String aPlace = place.get('place_name') + ':' + place.get('description');
-      print(aPlace);
-    }
-  }
 
-  void updatePlace() async {
-    final data = {
-      "place_name": "พิพิธภัณฑ์การเกษตรเฉลิมพระเกียรติฯ Wisdom Farm",
-      "province": "ปทุมธานี",
-      "keyword": ['ปทุมธานี', 'พิพิธภัณฑ์การเกษตรเฉลิมพระเกียรติฯ Wisdom Farm', 'เศรฐกิจพอเพียง'],
-      "link": "https://www.wisdomking.or.th/th",
-      "contact": "025292212",
-      "opens": "ททุกวัน 09.00-16.00 น.",
-      "google_map_link": "https://www.google.com/maps/dir/?api=1&destination=14.117899835872%2C100.62608063221",
-      "description": "พิพิธภัณฑ์การเกษตรเฉลิมพระเกียรติฯ Wisdom Farm เป็นแหล่งเรียนรู้การเกษตรเศรฐกิจพอเพียงเพื่อส่งเสริมให้ผู้คนได้ลองมาสัมผัสวิถีชีวิตแบบพอเพียงเพื่อประโยชน์ของประชาชน ด้วยพื้นที่กว่า 300 ไร่ ทางพิพิธภัณฑ์จึงแบ่งออกเป็น 2 โซนใหญ่ๆ คือ พิพิธภัณฑ์ในอาคาร และ พิพิธภัณฑ์การเรียนรู้กลางแจ้ง ในส่วนของ พิพิธภัณฑ์ในอาคาร จะมีการจัดแสดงเกี่ยวกับ ศาสตร์พระราชา เพื่อนำมาประยุกต์ใช้ในการเกษตรของ พระบาทสมเด็จพระบรมชนกาธิเบศร มหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร รัชกาลที่ 9 ส่วน พิพิธภัณฑ์การเรียนรู้กลางแจ้ง จะเป็นเขตของไร่นาและพืชผักต่างๆ ที่ทำให้เราได้ลองไปสัมผัสและลงมือทำด้วยตนเอง เช่น การสร้างบ้านดิน การใช้โซลาร์เซลล์เพื่อสร้างพลังงานทดแทน รวมถึงเวิร์คชอปวิถีเกษตร และวัฒนธรรมต่างๆ"
-    };
-    _firestore.collection('places').add(data);
-  }
-
-  void deletePlace() async {
-    final places = await _firestore.collection('places')
-        .where("place_name", isEqualTo: '')
-        .get();
-    //Here is the list of messages
-    for (var place in places.docs) {
-      _firestore.collection('places').doc(place.id).delete();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,17 +62,29 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         backgroundColor: Colors.green[200],
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              // logout
-              // getPlaces();
-              // deletePlace();
-              updatePlace();
-            },
-          )
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'หน้าหลัก',
+            // backgroundColor: Color(0xFFC5E1A5),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box),
+            label: 'เพิ่มสถานที่',
+          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.favorite),
+          //   label: 'รายการโปรด',
+          // ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green[900],
+        onTap: _onItemTapped,
       ),
     );
   }
