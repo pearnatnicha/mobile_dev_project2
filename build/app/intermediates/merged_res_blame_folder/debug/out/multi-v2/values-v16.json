@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/natnichasuratniti/Desktop/CS/lecture/mobileapp/mobile_dev_project2/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "/Users/beerebeerey/Documents/MUIC/mobiledev/mobile_dev_project2/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/natnichasuratniti/.gradle/caches/transforms-2/files-2.1/f910e53d48c9bb13b167634611201768/core-1.6.0/res/values-v16/values-v16.xml",
+                    "source": "/Users/beerebeerey/.gradle/caches/transforms-2/files-2.1/f910e53d48c9bb13b167634611201768/core-1.6.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
