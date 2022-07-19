@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'register.dart';
-import 'login.dart';
-import 'home.dart';
-import 'weather_forecast.dart';
-import 'addData.dart';
+import 'screens/register_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/navigator_bar.dart';
+import 'screens/weather_forecast_screen.dart';
+import 'screens/add_data_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
