@@ -1,17 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_demo/login.dart';
+import 'package:firebase_demo/screens/navigator_bar.dart';
+import 'package:firebase_demo/screens/register_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'login.dart';
+import 'navigator_bar.dart';
+import 'register_screen.dart';
 
-class Register extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  State<Register> createState() => _RegisterState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginState extends State<Login> {
   late FirebaseAuth _auth;
   String email = '';
   String password = '';
@@ -142,10 +144,22 @@ class _RegisterState extends State<Register> {
                     const SizedBox(height: 35),
                     MaterialButton(
                       onPressed: () async {
-                        //print("create account with $email , $password");
                         try {
-                          final newUser = await _auth.createUserWithEmailAndPassword(
+                          final user = await _auth.signInWithEmailAndPassword(
                               email: email, password: password);
+                          if (user != null) {
+                            print("$email is in.");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return Home(email: email, password: password);
+                                },
+                              ),
+                            );
+                          } else {
+                            print("Login failed");
+                          }
                         } catch (e) {
                           print(e);
                         }
@@ -153,7 +167,7 @@ class _RegisterState extends State<Register> {
                       height: 45,
                       minWidth: 240,
                       child: const Text(
-                        'สมัครใหม่',
+                        'เข้าสู่ระบบ',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
@@ -163,21 +177,21 @@ class _RegisterState extends State<Register> {
                     ),
                     const SizedBox(height: 25),
                     Text(
-                      'หากมีบัญชีผู้ใช้แล้ว คุณสามารถ',
+                      'เพิ่งเคยเข้ามาใน Emeralds ใช่หรือไม่',
                       style: TextStyle(
                         fontSize: 15.0,
                         color: Colors.black,
                       ),
                     ),
                     TextButton(
-                      child: const Text('เข้าสู่ระบบ'),
+                      child: const Text('สมัครใหม่'),
                       onPressed: () {
-                        print('Login');
+                        print('register');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Login();
+                              return Register();
                             },
                           ),
                         );
@@ -190,40 +204,52 @@ class _RegisterState extends State<Register> {
           ],
         ),
       ),
-      // body: Column(
-      //   children: [
-      //     const SizedBox(height: 30),
-      //     TextField(
-      //       onChanged: (value) {
-      //         email = value;
-      //       },
-      //       decoration: const InputDecoration(
-      //         hintText: 'email',
-      //       ),
+      // @override
+      // Widget build(BuildContext context) {
+      //   return Scaffold(
+      //     body: Column(
+      //       children: [
+      //         const SizedBox(height: 30),
+      //         TextField(
+      //           onChanged: (value) {
+      //             email = value;
+      //           },
+      //           decoration: const InputDecoration(
+      //             hintText: 'email',
+      //           ),
+      //         ),
+      //         TextField(
+      //           onChanged: (value) {
+      //             password = value;
+      //           },
+      //           decoration: const InputDecoration(
+      //             hintText: 'password',
+      //           ),
+      //         ),
+      //         TextButton(
+      //             child: const Text('Login'),
+      //             onPressed: () async {
+      //               //print("login with $email , $password");
+      //               try {
+      //                 final user = await _auth.signInWithEmailAndPassword(
+      //                     email: email, password: password);
+      //                 if (user != null) {
+      //                   print("$email is in.");
+      //                 } else {
+      //                   print("Login failed");
+      //                 }
+      //               } catch (e) {
+      //                 print(e);
+      //               }
+      //             }),
+      //         TextButton(
+      //           child: const Text('Register'),
+      //           onPressed: () {
+      //             print('register');
+      //           },
+      //         ),
+      //       ],
       //     ),
-      //     TextField(
-      //       onChanged: (value) {
-      //         password = value;
-      //       },
-      //       decoration: const InputDecoration(
-      //         hintText: 'password',
-      //       ),
-      //     ),
-      //
-      //
-      //     TextButton(
-      //         child: const Text('create account'),
-      //         onPressed: () async {
-      //           //print("create account with $email , $password");
-      //           try {
-      //             final newUser = await _auth.createUserWithEmailAndPassword(
-      //                 email: email, password: password);
-      //           } catch (e) {
-      //             print(e);
-      //           }
-      //         }),
-      //   ],
-      // ),
     );
   }
 }

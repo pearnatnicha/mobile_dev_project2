@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_demo/weather_forecast.dart';
+import 'package:firebase_demo/screens/weather_forecast_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -75,11 +75,14 @@ class _PlaceState extends State<Place> {
             SizedBox(height: 20),
             MaterialButton(
               onPressed: () {
-                MaterialPageRoute(
-                  builder: (context) {
-                    return WeatherForecast();
-                  },
-                );
+                // MaterialPageRoute(
+                //   builder: (context) {
+                //     return WeatherForecast();
+                //   },
+                // );
+                setState(() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => WeatherForecast(province: widget.place['province'])));
+                });
               },
               height: 45,
               minWidth: 240,

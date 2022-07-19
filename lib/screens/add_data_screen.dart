@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'base_card.dart';
-import 'home2.dart';
+import '../components/base_card.dart';
+import 'home_screen.dart';
 
 class AddData extends StatefulWidget {
   const AddData({required this.email, required this.password});
@@ -96,53 +96,61 @@ class _AddDataState extends State<AddData> {
                     Column(
                       children: [
                         SizedBox(height: 40),
-                        Text('รูปภาพ', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.photo),
+                        // Text('รูปภาพ', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),)
                         SizedBox(height: 40),
-                        Text('สถานที่', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.location_city),
+                        // Text('สถานที่', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('จังหวัด', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.location_pin),
+                        // Text('จังหวัด', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('เว็บไซต์', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.link),
+                        // Text('เว็บไซต์', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('ติดต่อ', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.phone),
+                        // Text('ติดต่อ', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('เวลา', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.punch_clock),
+                        // Text('เวลา', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('ที่ตั้ง', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.map),
+                        // Text('ที่ตั้ง', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
-                        Text('เนื้อหา', style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green.shade900,
-                        ),),
+                        Icon(Icons.description),
+                        // Text('เนื้อหา', style: TextStyle(
+                        //   fontSize: 17.0,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.green.shade900,
+                        // ),),
                         SizedBox(height: 40),
                       ],
                     ),
@@ -156,7 +164,7 @@ class _AddDataState extends State<AddData> {
                               image = value;
                             },
                             decoration: const InputDecoration(
-                              hintText: 'ลิงค์รูปภาพ',
+                              hintText: 'ลิงค์รูปภาพสถานที่',
                             ),
                           ),
                           SizedBox(height: 15),
@@ -183,7 +191,7 @@ class _AddDataState extends State<AddData> {
                               link = value;
                             },
                             decoration: const InputDecoration(
-                              hintText: 'เว็บไซต์',
+                              hintText: 'เว็บไซต์สถานที่',
                             ),
                           ),
                           SizedBox(height: 15),
@@ -201,7 +209,7 @@ class _AddDataState extends State<AddData> {
                               open = value;
                             },
                             decoration: const InputDecoration(
-                              hintText: 'เวลาทำการ',
+                              hintText: 'เวลาเปิดทำการ',
                             ),
                           ),
                           SizedBox(height: 15),
@@ -210,7 +218,7 @@ class _AddDataState extends State<AddData> {
                               map = value;
                             },
                             decoration: const InputDecoration(
-                              hintText: 'ลิงค์ google map',
+                              hintText: 'ลิงค์ Google Map',
                             ),
                           ),
                           SizedBox(height: 15),
@@ -219,7 +227,7 @@ class _AddDataState extends State<AddData> {
                               description = value;
                             },
                             decoration: const InputDecoration(
-                              hintText: 'เนื้อหา',
+                              hintText: 'คำอธิบายสถานที่',
                             ),
                           ),
                         ],
